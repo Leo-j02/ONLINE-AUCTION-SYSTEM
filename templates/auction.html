@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ auction.title }}</title></head>
+<body style="text-align:center; background-color:#e6f7ff;">
+<h1>{{ auction.title }}</h1>
+<p>{{ auction.description }}</p>
+<p>Current Bid: ₹{{ auction.current_bid }}</p>
+<p>Ends at: {{ auction.end_time }}</p>
+
+{% if session.get('user_id') %}
+<form method="post">
+    Your Bid: <input type="number" name="bid_amount" step="0.01">
+    <input type="submit" value="Place Bid">
+</form>
+{% else %}
+<p><a href="{{ url_for('login') }}">Login</a> to place a bid.</p>
+{% endif %}
+
+<h2>Bids:</h2>
+<ul>
+{% for bid in bids %}
+    <li>₹{{ bid.amount }}</li>
+{% endfor %}
+</ul>
+</body>
+</html>

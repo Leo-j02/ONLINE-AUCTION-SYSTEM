@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head><title>Auctions</title></head>
+<body style="text-align:center; background-color:#f0f8ff;">
+<h1>Available Auctions</h1>
+{% for auction in auctions %}
+    <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+        <h2>{{ auction.title }}</h2>
+        <p>{{ auction.description }}</p>
+        <p>Current Bid: ₹{{ auction.current_bid }}</p>
+        <a href="{{ url_for('auction', auction_id=auction.id) }}">View Auction</a>
+    </div>
+{% endfor %}
+<a href="{{ url_for('create_auction') }}">Create Auction</a> | 
+<a href="{{ url_for('login') }}">Login</a> | 
+<a href="{{ url_for('register') }}">Register</a> | 
+<a href="{{ url_for('logout') }}">Logout</a>
+</body>
+</html>
